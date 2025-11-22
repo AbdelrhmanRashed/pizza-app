@@ -1,12 +1,17 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  type RouteObject,
+} from "react-router-dom";
 import Home from "./ui/Home";
 import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
 import Menu from "./features/menu/Menu";
 import Order from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
+import { loader as menuLoader } from "./features/menu/loader";
 
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
     path: "/",
     element: <AppLayout />,
@@ -18,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/menu",
         element: <Menu />,
+        loader: menuLoader,
       },
       {
         path: "/cart",
@@ -33,7 +39,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return <RouterProvider router={router} />;

@@ -1,46 +1,8 @@
+import type { IMenuItem } from "../types";
+import type { ICreateOrderData, IOrder } from "../types";
 const API_URL = "https://react-fast-pizza-api.jonas.io/api";
 
-interface MenuItem {
-  id: number;
-  name: string;
-  unitPrice: number;
-  imageUrl: string;
-  ingredients: string[];
-  soldOut: boolean;
-}
-
-interface Order {
-  id: string;
-  customer: string;
-  phone: string;
-  address: string;
-  priority: boolean;
-  estimatedDelivery: string;
-  cart: CartItem[];
-  position: string;
-  orderPrice: number;
-  priorityPrice: number;
-  status?: string;
-}
-
-interface CartItem {
-  pizzaId: number;
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-}
-
-interface CreateOrderData {
-  customer: string;
-  phone: string;
-  address: string;
-  cart: CartItem[];
-  priority: boolean;
-  position: string;
-}
-
-export async function getMenu(): Promise<MenuItem[]> {
+export async function getMenu(): Promise<IMenuItem[]> {
   const res = await fetch(`${API_URL}/menu`);
 
   // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
@@ -50,7 +12,7 @@ export async function getMenu(): Promise<MenuItem[]> {
   return data;
 }
 
-export async function getOrder(id: string): Promise<Order> {
+export async function getOrder(id: string): Promise<IOrder> {
   const res = await fetch(`${API_URL}/order/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
@@ -58,7 +20,7 @@ export async function getOrder(id: string): Promise<Order> {
   return data;
 }
 
-export async function createOrder(newOrder: CreateOrderData): Promise<Order> {
+export async function createOrder(newOrder: ICreateOrderData): Promise<IOrder> {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -78,7 +40,7 @@ export async function createOrder(newOrder: CreateOrderData): Promise<Order> {
 
 export async function updateOrder(
   id: string,
-  updateObj: Partial<Order>
+  updateObj: Partial<IOrder>
 ): Promise<void> {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {

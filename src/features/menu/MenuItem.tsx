@@ -1,14 +1,7 @@
-import { formatCurrency } from './helpers';
-
+import { formatCurrency } from "../../utils/helpers";
+import type { IMenuItem } from "../../types";
 interface MenuItemProps {
-  pizza: {
-    id: number;
-    name: string;
-    unitPrice: number;
-    ingredients: string[];
-    soldOut: boolean;
-    imageUrl: string;
-  };
+  pizza: IMenuItem;
 }
 
 function MenuItem({ pizza }: MenuItemProps) {
@@ -19,7 +12,7 @@ function MenuItem({ pizza }: MenuItemProps) {
       <img src={imageUrl} alt={name} />
       <div>
         <p>{name}</p>
-        <p>{ingredients.join(', ')}</p>
+        <p>{ingredients.join(", ")}</p>
         <div>
           {!soldOut ? <p>{formatCurrency(unitPrice)}</p> : <p>Sold out</p>}
         </div>
@@ -29,4 +22,3 @@ function MenuItem({ pizza }: MenuItemProps) {
 }
 
 export default MenuItem;
-
