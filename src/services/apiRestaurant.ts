@@ -1,5 +1,5 @@
 import type { IMenuItem } from "../types";
-import type { ICreateOrderData, IOrder } from "../types";
+import type { IFinalOrderData, IOrder } from "../types";
 const API_URL = "https://react-fast-pizza-api.jonas.io/api";
 
 export async function getMenu(): Promise<IMenuItem[]> {
@@ -20,7 +20,7 @@ export async function getOrder(id: string): Promise<IOrder> {
   return data;
 }
 
-export async function createOrder(newOrder: ICreateOrderData): Promise<IOrder> {
+export async function createOrder(newOrder: IFinalOrderData): Promise<IOrder> {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",

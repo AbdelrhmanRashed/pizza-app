@@ -14,11 +14,17 @@ export interface IOrder {
   status?: string;
 }
 
-export interface ICreateOrderData {
+export interface IFinalOrderData {
   customer: string;
   phone: string;
   address: string;
   cart: ICartItem[];
   priority: boolean;
-  position: string;
+  position?: string;
 }
+
+export type FormErrors = {
+  phone?: string;
+  customerName?: string;
+  address?: string;
+};

@@ -4,8 +4,8 @@ import { Outlet, useNavigation } from "react-router-dom";
 import Spinner from "./spinner";
 
 const AppLayout = () => {
-  const navigation = useNavigation().state;
-  const isLoading = navigation === "loading";
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
 
   return (
     <div>

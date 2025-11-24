@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import MenuItem from "./MenuItem";
 import type { IMenuItem } from "../../types";
 

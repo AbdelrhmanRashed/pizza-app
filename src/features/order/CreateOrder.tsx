@@ -1,10 +1,5 @@
-import { useState } from "react";
-
-// https://uibakery.io/regex-library/phone-number
-const isValidPhone = (str: string): boolean =>
-  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
-  );
+import { Form, useActionData, useNavigation } from "react-router-dom";
+import type { FormErrors } from "../../types";
 
 interface CartItem {
   pizzaId: number;
@@ -39,6 +34,11 @@ const fakeCart: CartItem[] = [
 ];
 
 function CreateOrder() {
+  const formErrors = useActionData() as FormErrors;
+
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
 
@@ -46,10 +46,11 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Let's go!</h2>
 
-      <form>
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
+          {formErrors?.customerName && <p>{formErrors.customerName}</p>}
         </div>
 
         <div>
@@ -57,6 +58,7 @@ function CreateOrder() {
           <div>
             <input type="tel" name="phone" required />
           </div>
+          {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
 
         <div>
@@ -64,6 +66,7 @@ function CreateOrder() {
           <div>
             <input type="text" name="address" required />
           </div>
+          {formErrors?.address && <p>{formErrors.address}</p>}
         </div>
 
         <div>
@@ -76,11 +79,13 @@ function CreateOrder() {
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
-
+        <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div>
-          <button>Order now</button>
+          <button disabled={isSubmitting}>
+            {isSubmitting ? "Placing order..." : "Order now"}
+          </button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 }

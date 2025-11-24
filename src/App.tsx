@@ -4,17 +4,19 @@ import {
   type RouteObject,
 } from "react-router-dom";
 import Home from "./ui/Home";
+import Error from "./ui/Error";
 import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
 import Menu from "./features/menu/Menu";
 import Order from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
-import { loader as menuLoader } from "./features/menu/loader";
+import { createOrderAction, menuLoader, orderLoader } from "./services/loader";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -32,10 +34,12 @@ const routes: RouteObject[] = [
       {
         path: "/order/new",
         element: <CreateOrder />,
+        action: createOrderAction,
       },
       {
         path: "/order/:orderId",
         element: <Order />,
+        loader: orderLoader,
       },
     ],
   },
