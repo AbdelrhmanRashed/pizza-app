@@ -15,10 +15,12 @@ function CreateUser() {
         type="text"
         placeholder="Your full name"
         value={username}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setUsername(e.target.value)
+        }
       />
 
-      {username !== '' && (
+      {username.trim() && (
         <div>
           <button>Start ordering</button>
         </div>
@@ -28,4 +30,3 @@ function CreateUser() {
 }
 
 export default CreateUser;
-
