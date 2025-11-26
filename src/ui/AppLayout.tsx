@@ -8,13 +8,14 @@ const AppLayout = () => {
   const isLoading = navigation.state === 'loading';
 
   return (
-    <div>
-      {/* {isLoading && <Spinner />} */}
-      {true && <Spinner />}
+    <div className="grid h-screen grid-rows-[auto_1fr_auto]">
+      {isLoading && <Spinner />}
 
       <Header></Header>
 
-      <Outlet></Outlet>
+      <div className="overflow-y-auto">
+        <Outlet></Outlet>
+      </div>
 
       <CartOverview></CartOverview>
     </div>

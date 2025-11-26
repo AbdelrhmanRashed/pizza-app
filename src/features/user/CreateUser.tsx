@@ -18,6 +18,7 @@ function CreateUser() {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setUsername(e.target.value)
         }
+        className="w-72 rounded-full bg-white px-3 py-2 outline-none placeholder:text-stone-500"
       />
 
       {username.trim() && (
