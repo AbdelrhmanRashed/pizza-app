@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import Button from '../../ui/Button';
 
 function CreateUser() {
   const [username, setUsername] = useState<string>('');
@@ -9,7 +10,9 @@ function CreateUser() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>👋 Welcome! Please start by telling us your name:</p>
+      <p className="mb-4 text-sm text-stone-600 md:text-base">
+        👋 Welcome! Please start by telling us your name:
+      </p>
 
       <input
         type="text"
@@ -18,12 +21,12 @@ function CreateUser() {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setUsername(e.target.value)
         }
-        className="w-72 rounded-full bg-white px-3 py-2 outline-none placeholder:text-stone-500"
+        className="form-input mb-8 w-72"
       />
 
       {username.trim() && (
         <div>
-          <button>Start ordering</button>
+          <Button variant="primary">Start ordering</Button>
         </div>
       )}
     </form>

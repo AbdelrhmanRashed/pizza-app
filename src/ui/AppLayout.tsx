@@ -14,7 +14,9 @@ const AppLayout = () => {
       <Header></Header>
 
       <div className="overflow-y-auto">
-        <Outlet></Outlet>
+        <div className="container">
+          <Outlet></Outlet>
+        </div>
       </div>
 
       <CartOverview></CartOverview>

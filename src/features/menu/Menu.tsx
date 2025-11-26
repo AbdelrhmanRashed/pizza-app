@@ -1,12 +1,12 @@
-import { useLoaderData } from "react-router-dom";
-import MenuItem from "./MenuItem";
-import type { IMenuItem } from "../../types";
+import { useLoaderData } from 'react-router-dom';
+import MenuItem from './MenuItem';
+import type { IMenuItem } from '../../types';
 
 function Menu() {
   const menu = useLoaderData() as IMenuItem[];
 
   return (
-    <ul>
+    <ul className="divide-y divide-stone-200">
       {menu.map((pizza) => (
         <MenuItem pizza={pizza} key={pizza.id} />
       ))}

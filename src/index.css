@@ -9,8 +9,33 @@
 }
 
 @layer components {
-  input {
-    @apply w-46 rounded-full bg-yellow-100 px-4 py-2 text-sm transition-all duration-300 outline-none placeholder:text-stone-400 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-0 sm:w-64 sm:focus:w-72;
+  .form-input {
+    @apply w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-amber-400 focus:outline-none;
+  }
+  .container {
+    @apply mx-auto px-1 sm:px-4;
+    max-width: 100%;
+  }
+
+  @screen sm {
+    .container {
+      max-width: 640px;
+    }
+  }
+  @screen md {
+    .container {
+      max-width: 768px;
+    }
+  }
+  @screen lg {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  @screen xl {
+    .container {
+      max-width: 1280px;
+    }
   }
 }
 
