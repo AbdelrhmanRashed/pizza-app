@@ -20,12 +20,14 @@ const routes: RouteObject[] = [
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home />, 
+
       },
       {
         path: "/menu",
         element: <Menu />,
         loader: menuLoader,
+        
       },
       {
         path: "/cart",
