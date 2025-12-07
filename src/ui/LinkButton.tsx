@@ -14,7 +14,7 @@ const LinkButton = ({ children, to }: LinkButtonProp) => {
 
   if (to === '-1')
     return (
-      <button className={styles} onClick={() => navigate(-1)}>
+      <button className={styles} onClick={() => navigate(-1)} type="button">
         {children}
       </button>
     );

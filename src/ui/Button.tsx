@@ -13,8 +13,9 @@ const base: string =
 
 const styles = {
   primary: base + 'px-4 py-3 md:px-6 md:py-4',
-  secondary: base + ' ',
   small: base + 'px-4 py-2 md:px-5 md:py-2.5 text-sm',
+  secondary:
+    'inline-block cursor-pointer rounded-full bg-transparent font-semibold tracking-wide uppercase transition-colors duration-300 outline-none hover:bg-stone-300 focus:bg-stone-300 focus:ring-2 focus:ring-stone-300 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-75 disabled:hover:bg-stone-400  border border-stone-300 px-4 py-2.5 md:px-6 md:py-3.5',
 };
 
 const Button = ({ children, disabled, to, variant }: ButtonProps) => {

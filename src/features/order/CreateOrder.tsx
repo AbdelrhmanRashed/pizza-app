@@ -44,28 +44,43 @@ function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Let's go!</h2>
+    <div className="my-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
 
       <Form method="POST" className="space-y-3">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" required className="form-input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input
+            type="text"
+            className="form-input grow"
+            name="customer"
+            required
+          />
           {formErrors?.customerName && <p>{formErrors.customerName}</p>}
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="form-input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input
+              type="tel"
+              className="form-input w-full"
+              name="phone"
+              required
+            />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input type="text" name="address" required className="form-input" />
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
+            <input
+              type="text"
+              className="form-input w-full"
+              name="address"
+              required
+            />
           </div>
           {formErrors?.address && <p>{formErrors.address}</p>}
         </div>
@@ -83,7 +98,7 @@ function CreateOrder() {
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         <div>
-          <Button variant ="primary" disabled={isSubmitting}>
+          <Button variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Placing order...' : 'Order now'}
           </Button>
         </div>

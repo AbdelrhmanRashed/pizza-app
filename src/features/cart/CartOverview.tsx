@@ -8,7 +8,15 @@ function CartOverview() {
           <span>23 pizzas</span>
           <span>$23.45</span>
         </p>
-        <Link to="cart">Open cart &rarr;</Link>
+        <Link
+          to="cart"
+          className="group inline-flex items-center gap-1 transition-all hover:text-yellow-500"
+        >
+          Open cart{' '}
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            &rarr;
+          </span>
+        </Link>
       </div>
     </div>
   );
