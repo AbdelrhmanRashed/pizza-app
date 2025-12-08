@@ -45,7 +45,8 @@ export async function createOrderAction({
 
   const errors: FormErrors = {};
 
-  if (!isValidPhone(order.phone))
+  if (!order.phone.trim()) errors.phone = 'Phone number is required!';
+  else if (!isValidPhone(order.phone))
     errors.phone =
       'Please give us your correct phone number. We might need it to contact you.';
 

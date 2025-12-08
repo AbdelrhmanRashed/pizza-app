@@ -48,44 +48,65 @@ function CreateOrder() {
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
 
       <Form method="POST" className="space-y-3">
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">First Name</label>
-          <input
-            type="text"
-            className="form-input grow"
-            name="customer"
-            required
-          />
-          {formErrors?.customerName && <p>{formErrors.customerName}</p>}
-        </div>
-
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Phone number</label>
-          <div className="grow">
-            <input
-              type="tel"
-              className="form-input w-full"
-              name="phone"
-              required
-            />
+        {/* Full Name Input */}
+        <div className="mb-5">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <label className="sm:basis-40">Full Name</label>
+            <div className="grow">
+              <input
+                type="text"
+                className="form-input w-full"
+                name="customer"
+                required
+              />
+            </div>
           </div>
-          {formErrors?.phone && <p>{formErrors.phone}</p>}
+          {formErrors?.customerName && (
+            <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+              {formErrors.customerName}
+            </p>
+          )}
         </div>
-
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Address</label>
-          <div className="grow">
-            <input
-              type="text"
-              className="form-input w-full"
-              name="address"
-              required
-            />
+        {/* Phone number Input  */}
+        <div className="mb-5">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <label className="sm:basis-40">Phone number</label>
+            <div className="grow">
+              <input
+                type="tel"
+                className="form-input w-full"
+                name="phone"
+                required
+              />
+            </div>
           </div>
-          {formErrors?.address && <p>{formErrors.address}</p>}
+          {formErrors?.phone && (
+            <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+              {formErrors.phone}
+            </p>
+          )}
         </div>
-
-        <div className="flex items-center gap-2">
+        {/* Address Input  */}
+        <div className="mb-5">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <label className="sm:basis-40">Address</label>
+            <div className="grow">
+              <input
+                type="text"
+                className="form-input w-full"
+                name="address"
+                required
+              />
+            </div>
+          </div>
+          {formErrors?.address && (
+            <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+              {formErrors.address}
+            </p>
+          )}
+        </div>
+        {/* Priority Input  */}
+        <div className="mb-12 flex items-center gap-2">
           <input
             type="checkbox"
             name="priority"
@@ -96,7 +117,10 @@ function CreateOrder() {
           />
           <label htmlFor="priority">Want to yo give your order priority?</label>
         </div>
+        {/* Hidden Input for Cart data  */}
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+
+        {/* Submit Btn */}
         <div>
           <Button variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Placing order...' : 'Order now'}
