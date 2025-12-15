@@ -1,4 +1,4 @@
-// Test ID: IIDSAT
+// Test ID: GRV0P8
 
 import { useLoaderData } from 'react-router-dom';
 import {
@@ -26,7 +26,7 @@ function Order() {
   return (
     <div className="mt-2 space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-xl font-semibold">Order #{id} status</h2>
+        <h2 className="text-lg font-semibold">Order #{id} status</h2>
 
         <div className="space-x-2">
           {priority && (
@@ -53,7 +53,7 @@ function Order() {
 
       <ul className="divide-y divide-stone-300 border-y border-stone-300">
         {cart.map((item) => (
-          <OrderItem item={item} />
+          <OrderItem item={item} key={item.pizzaId} />
         ))}
       </ul>
 

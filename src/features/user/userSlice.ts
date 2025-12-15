@@ -1,22 +1,24 @@
-interface Position {
-  latitude: number;
-  longitude: number;
-}
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+// import { getAddress } from '../../services/apiGeocoding';
 
-interface AddressData {
-  locality?: string;
-  city?: string;
-  postcode?: string;
-  countryName?: string;
-}
+// interface Position {
+//   latitude: number;
+//   longitude: number;
+// }
 
-import { getAddress } from './apiGeocoding';
+// interface AddressData {
+//   locality?: string;
+//   city?: string;
+//   postcode?: string;
+//   countryName?: string;
+// }
 
-interface FetchAddressResult {
-  position: Position;
-  address: string;
-}
+// interface FetchAddressResult {
+//   position: Position;
+//   address: string;
+// }
 
+/*
 function getPosition(): Promise<GeolocationPosition> {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -38,4 +40,23 @@ async function fetchAddress(): Promise<FetchAddressResult> {
   // 3) Then we return an object with the data that we are interested in
   return { position, address };
 }
+*/
+interface IUser {
+  username: string;
+}
+const initialState: IUser = {
+  username: '',
+};
 
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    updateName(state, action: PayloadAction<string>) {
+      state.username = action.payload;
+    },
+  },
+});
+
+export const { updateName } = userSlice.actions;
+export default userSlice.reducer;

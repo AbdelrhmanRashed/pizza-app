@@ -1,48 +1,27 @@
-import { Link } from 'react-router-dom';
 import LinkButton from '../../ui/LinkButton';
 import Button from '../../ui/Button';
 import CartItem from './CartItem';
-
-interface CartItem {
-  pizzaId: number;
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-}
-
-const fakeCart: CartItem[] = [
-  {
-    pizzaId: 12,
-    name: 'Mediterranean',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: 'Vegetale',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: 'Spinach and Mushroom',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { clearCart, getCart } from './cartSlice';
+import EmptyCart from './EmptyCart';
 
 const Cart = () => {
-  const cart = fakeCart;
+  const username = useAppSelector((state) => state.user.username);
+  const cart = useAppSelector(getCart);
+  const dispatch = useAppDispatch();
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+    console.log('Successfully Cleared!');
+  };
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="container mt-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2 className="mt-7 text-xl font-semibold">Your cart, %NAME%</h2>
+      <h2 className="mt-7 text-xl font-semibold">Your cart, {username}</h2>
 
       <ul className="my-3 divide-y divide-stone-200 border-b border-stone-200">
         {cart.map((cartItem) => (
@@ -54,7 +33,9 @@ const Cart = () => {
           Order pizzas
         </Button>
 
-        <Button variant="secondary">Clear cart</Button>
+        <Button variant="secondary" onClick={handleClearCart}>
+          Clear cart
+        </Button>
       </div>
     </div>
   );

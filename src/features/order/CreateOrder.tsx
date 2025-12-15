@@ -1,6 +1,7 @@
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import type { FormErrors } from '../../types';
 import Button from '../../ui/Button';
+import { useAppSelector } from '../../hooks';
 
 interface CartItem {
   pizzaId: number;
@@ -34,10 +35,10 @@ const fakeCart: CartItem[] = [
   },
 ];
 
-function CreateOrder() {
+const CreateOrder = () => {
   const formErrors = useActionData() as FormErrors;
-
   const navigation = useNavigation();
+  const username = useAppSelector((state) => state.user.username);
   const isSubmitting = navigation.state === 'submitting';
 
   // const [withPriority, setWithPriority] = useState(false);
@@ -58,6 +59,7 @@ function CreateOrder() {
                 className="form-input w-full"
                 name="customer"
                 required
+                defaultValue={username}
               />
             </div>
           </div>
@@ -129,6 +131,6 @@ function CreateOrder() {
       </Form>
     </div>
   );
-}
+};
 
 export default CreateOrder;
