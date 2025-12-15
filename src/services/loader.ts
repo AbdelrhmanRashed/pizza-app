@@ -1,6 +1,8 @@
 import type { FormErrors, IFinalOrderData, IMenuItem, IOrder } from '../types';
 import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { createOrder, getMenu, getOrder } from './apiRestaurant';
+import store from '../store';
+import { clearCart } from '../features/cart/cartSlice';
 
 type TOrderForm = {
   customer: string;
@@ -39,7 +41,7 @@ export async function createOrderAction({
 
   const order: IFinalOrderData = {
     ...data,
-    priority: data.priority === 'on',
+    priority: data.priority === 'true',
     cart: JSON.parse(data.cart),
   };
 
@@ -57,5 +59,9 @@ export async function createOrderAction({
 
   //If every thing is okay! create new order and redirect.
   const createdOrder = await createOrder(order);
+
+  //We shouldn't overuse this technique because optimization issue
+  store.dispatch(clearCart());
+
   return redirect(`/order/${createdOrder.id}`);
 }

@@ -7,15 +7,7 @@ interface ICart {
 }
 
 const initialState: ICart = {
-  cart: [
-    {
-      name: 'pizza',
-      pizzaId: 3,
-      quantity: 3,
-      totalPrice: 30,
-      unitPrice: 10,
-    },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({
